@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class jsonPlaceholderClient {
+public class JsonPlaceholderClient {
 
     private final WebClient rawWebClient;
 
@@ -86,7 +86,7 @@ public class jsonPlaceholderClient {
     }
 
 
-    private int getRandomNumber() {
+    public int getRandomNumber() {
         int min = 1;
         int max = 10;
         return (int)(Math.random() * (max - min + 1) + min);

@@ -19,7 +19,7 @@ import java.util.List;
 public class JsonPlaceHolderController {
 
     @Autowired
-    private jsonPlaceholderClient jsonPlaceholderClient;
+    private JsonPlaceholderClient jsonPlaceholderClient;
 
 
     @GetMapping("/posts")
