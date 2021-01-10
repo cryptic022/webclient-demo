@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 
 @Slf4j
 @RestController
@@ -29,4 +31,11 @@ public class JsonPlaceHolderController {
     public Flux<Post> getPostById(@PathVariable int userId) {
         return jsonPlaceholderClient.getPost(userId);
     }
+
+    @GetMapping("/postsSequence")
+    public Mono<List<Post>> getSequenceExample() {
+        return jsonPlaceholderClient.getSequenceCallExample();
+    }
+
+
 }
