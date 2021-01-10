@@ -1,5 +1,6 @@
 package com.example.webclientdemo;
 
+import com.example.webclientdemo.model.Todo;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,12 @@ public class JsonPlaceHolderController {
 
 
     @GetMapping("/todos")
-    public Flux<JsonNode> getTodos() {
+    public Flux<Todo> getTodos() {
         return jsonPlaceholderClient.getTodos();
     }
 
     @GetMapping("/todos/{todoId}")
-    public Mono<JsonNode> getTodoById(@PathVariable String todoId) {
+    public Mono<Todo> getTodoById(@PathVariable int todoId) {
         return jsonPlaceholderClient.getTodo(todoId);
     }
 }

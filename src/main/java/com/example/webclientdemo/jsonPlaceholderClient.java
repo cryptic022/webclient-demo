@@ -1,5 +1,6 @@
 package com.example.webclientdemo;
 
+import com.example.webclientdemo.model.Todo;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class jsonPlaceholderClient {
 
     private final WebClient rawWebClient;
 
-    public Flux<JsonNode> getTodos() {
+    public Flux<Todo> getTodos() {
         return rawWebClient
                 .get().uri("/todos")
                 .retrieve()
@@ -28,10 +29,10 @@ public class jsonPlaceholderClient {
                     System.out.println("5xx error");
                     return Mono.error(new RuntimeException("5xx"));
                 })
-                .bodyToFlux(JsonNode.class);
+                .bodyToFlux(Todo.class);
     }
 
-    public Mono<JsonNode> getTodo(String todoId) {
+    public Mono<Todo> getTodo(int todoId) {
         return rawWebClient
                 .get().uri("/todos/" + todoId)
                 .retrieve()
@@ -43,6 +44,6 @@ public class jsonPlaceholderClient {
                     System.out.println("5xx error");
                     return Mono.error(new RuntimeException("5xx"));
                 })
-                .bodyToMono(JsonNode.class);
+                .bodyToMono(Todo.class);
     }
 }
