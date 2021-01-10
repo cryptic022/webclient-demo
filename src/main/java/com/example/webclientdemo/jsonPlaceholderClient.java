@@ -1,7 +1,6 @@
 package com.example.webclientdemo;
 
-import com.example.webclientdemo.model.Todo;
-import com.fasterxml.jackson.databind.JsonNode;
+import com.example.webclientdemo.model.Post;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,9 +16,9 @@ public class jsonPlaceholderClient {
 
     private final WebClient rawWebClient;
 
-    public Flux<Todo> getTodos() {
+    public Flux<Post> getPosts() {
         return rawWebClient
-                .get().uri("/todos")
+                .get().uri("/posts")
                 .retrieve()
                 .onStatus(HttpStatus::is4xxClientError, response -> {
                     System.out.println("4xx error");
@@ -29,12 +28,12 @@ public class jsonPlaceholderClient {
                     System.out.println("5xx error");
                     return Mono.error(new RuntimeException("5xx"));
                 })
-                .bodyToFlux(Todo.class);
+                .bodyToFlux(Post.class);
     }
 
-    public Mono<Todo> getTodo(int todoId) {
+    public Flux<Post> getPost(int userId) {
         return rawWebClient
-                .get().uri("/todos/" + todoId)
+                .get().uri("/posts?userId=" + userId)
                 .retrieve()
                 .onStatus(HttpStatus::is4xxClientError, response -> {
                     System.out.println("4xx error");
@@ -44,6 +43,6 @@ public class jsonPlaceholderClient {
                     System.out.println("5xx error");
                     return Mono.error(new RuntimeException("5xx"));
                 })
-                .bodyToMono(Todo.class);
+                .bodyToFlux(Post.class);
     }
 }

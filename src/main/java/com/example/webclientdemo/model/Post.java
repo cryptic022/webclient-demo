@@ -15,9 +15,9 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 @SuperBuilder
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(NON_NULL)
-public class Todo {
+public class Post {
     private Integer userId;
     private Integer id;
     private String title;
-    private Boolean completed;
+    private String body;
 }
